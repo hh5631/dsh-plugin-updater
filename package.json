@@ -1,0 +1,23 @@
+{
+  "name": "dsh-plugin-updater",
+  "version": "1.0.0",
+  "description": "在 DSH 的已安装插件列表中检查并安装更新。",
+  "repository": { "type": "git", "url": "git+https://github.com/hh5631/dsh-plugin-updater.git" },
+  "homepage": "https://github.com/hh5631/dsh-plugin-updater#readme",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": ["lib", "cordis.patch.yml", "README.md"],
+  "engines": { "node": ">=22", "dsh": "0.2.2-rc.1" },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "inject": ["@deepseek-ai/dsh-client-ui-plugin-manager"]
+    }
+  }
+}
