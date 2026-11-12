@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-updater",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "在 DSH 的已安装插件列表中检查并安装更新。",
   "repository": { "type": "git", "url": "git+https://github.com/hh5631/dsh-plugin-updater.git" },
   "homepage": "https://github.com/hh5631/dsh-plugin-updater#readme",

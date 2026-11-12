@@ -1,21 +1,23 @@
 # DSH 插件更新
 
-打开「插件 → 已安装」，在「已安装插件」标题右侧点「检查更新」。有兼容的新版本时，对应插件会显示 DSH 原生的「可更新」标签和「更新」按钮。点击按钮会打开原生确认窗口，展示当前版本和目标版本。
+打开「插件 → 已安装」，点「检查更新」。每个插件查到可用版本后会立即显示更新按钮。可逐个更新，也可通过「全部更新」确认多个版本并查看进度。更新结果会提示是否需要重启 DSH。
 
-版本检查、安装来源、安装进度和失败恢复沿用 DSH 插件管理器。检查范围是 DSH 支持在线更新的 registry 插件。本地链接、固定 Git 或压缩包来源仍按各自原有方式维护。
+支持 DSH registry 插件，以及从公开 GitHub 仓库或 GitHub Release 压缩包安装的插件。优先匹配稳定 Release 中对应插件的 `.tgz` 或 `.tar.gz`。GitHub 仓库来源也可以通过稳定 Git 标签或默认分支的 `package.json` 检测版本，安装时使用确切的提交。GitHub API 限流时会尝试使用本机已登录的 `gh`。本地链接和其它压缩包来源维持原有安装方式。
+
+检查并发上限为 registry 3 个、GitHub 6 个。批量更新时，GitHub 安装包由同一次 pnpm 操作并行下载，registry 包并行准备，profile 的写入由 DSH 加锁。
 
 ## 安装
 
-从 GitHub Release 安装：
+从 GitHub Release 安装
 
 ```sh
 dsh plugin --profile web add https://github.com/hh5631/dsh-plugin-updater/releases/latest/download/dsh-plugin-updater.tgz
 ```
 
-从本地源码安装时，在插件目录执行：
+从本地源码安装时，在插件目录执行
 
 ```sh
 dsh plugin --profile web add "link:$PWD"
 ```
 
-适配 DSH Web 0.2.2-rc.1，无需构建或额外运行依赖。若运行中的 DSH 尚未加载新插件，重启原有 Web 服务后刷新页面。
+适配 DSH Web 0.2.2-rc.1，无需构建或额外安装运行依赖。升级后重启 Web 服务，再刷新页面。
