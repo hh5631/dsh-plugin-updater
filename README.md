@@ -4,7 +4,7 @@
 
 支持从公开 GitHub 仓库或 GitHub Release 压缩包安装的插件。npm registry 插件由 DSH 原生插件管理器检查和更新。优先匹配稳定 Release 中对应插件的 `.tgz` 或 `.tar.gz`。GitHub 仓库来源也可以通过稳定 Git 标签或默认分支的 `package.json` 检测版本，安装时使用确切的提交。GitHub API 限流时会尝试使用本机已登录的 `gh`。本地链接和其它压缩包来源维持原有安装方式。
 
-检查并发上限为 6 个。固定到 Git 提交的同源更新由 DSH 原生接口安装。GitHub Release 压缩包批量更新时由同一次 pnpm 操作并行下载，profile 的写入由 DSH 加锁。
+检查并发上限为 6 个，逐个查询请求在 Host 侧按 3 个一组发出，未登录时不会一次性耗尽 GitHub 的每小时额度。失败会聚合在工具栏的提示里，点开可看每个插件的原因。固定到 Git 提交的同源更新由 DSH 原生接口安装。GitHub Release 压缩包批量更新时由同一次 pnpm 操作并行下载，profile 的写入由 DSH 加锁。
 
 ## 安装
 
