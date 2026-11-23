@@ -20,4 +20,4 @@ dsh plugin --profile web add https://github.com/hh5631/dsh-plugin-updater/releas
 dsh plugin --profile web add "link:$PWD"
 ```
 
-适配 DSH Web 0.2.2-rc.3，无需构建或额外安装运行依赖。升级后重启 Web 服务，再刷新页面。
+适配 DSH Web `0.2.2-rc.3` 和 `0.2.2-rc.5`，无需构建或额外安装运行依赖。升级后重启 Web 服务，再刷新页面。
